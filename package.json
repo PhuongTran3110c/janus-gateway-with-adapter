@@ -1,0 +1,39 @@
+{
+  "name": "janus-gateway-with-adapter",
+  "version": "1.0.1",
+  "description": "A javascript library for interacting with the C based Janus WebRTC Server",
+  "main": "dist/janus.es.js",
+  "types": "janus.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "janus.d.ts",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhuongTran3110c/janus-gateway-with-adapter.git",
+    "directory": "npm"
+  },
+  "author": "Lorenzo Miniero <lorenzo@meetecho.com> (https://www.meetecho.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meetecho/janus-gateway/issues"
+  },
+  "homepage": "https://janus.conf.meetecho.com/docs/JS",
+  "dependencies": {
+    "webrtc-adapter": "8.2.3"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "^5.0.2",
+    "@rollup/plugin-strip": "^3.0.2",
+    "eslint": "^8.39.0",
+    "eslint-plugin-html": "^7.1.0",
+    "rollup": "^3.21.6"
+  },
+  "scripts": {
+    "lint": "eslint ../html --ext .js,.html --resolve-plugins-relative-to ./npm",
+    "rollup": "rollup -c rollup.config.mjs",
+    "prerelease": "npm run rollup -- --o dist/janus.es.js --f es && node -e \"const fs=require('fs'); const data=fs.readFileSync('../html/janus.js'); fs.mkdirSync('./src', {recursive:true}); fs.writeFileSync('./src/janus.js',data);\""
+  }
+}
